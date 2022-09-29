@@ -1,9 +1,15 @@
+import ImgixClient from "@imgix/js-core";
 import Constants from "expo-constants";
 import * as React from "react";
 import { Image, Linking, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
-  const imgixImageURL = "https://sdk-test.imgix.net/amsterdam.jpg";
+  const imgix = new ImgixClient({ domain: "sdk-test.imgix.net" });
+  const height = 950;
+  const imgixParams = { h: height };
+  const uri = {
+    uri: imgix.buildURL("amsterdam.jpg", imgixParams),
+  };
 
   return (
     <View style={styles.container}>
@@ -19,11 +25,7 @@ export default function App() {
         </Text>{" "}
         to {"<Image />"} in App.js.
       </Text>
-      <Image
-        style={styles.image}
-        height={950}
-        source={{ uri: imgixImageURL }}
-      />
+      <Image style={styles.image} height={height} source={uri} />
     </View>
   );
 }

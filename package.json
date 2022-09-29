@@ -9,6 +9,7 @@
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^0.17.0",
+    "@imgix/js-core": "^3.6.0",
     "expo": "~46.0.13",
     "expo-constants": "~13.2.4",
     "expo-status-bar": "~1.4.0",
