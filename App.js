@@ -12,8 +12,8 @@ import {
 
 export default function App() {
   const imgix = new ImgixClient({ domain: "sdk-test.imgix.net" });
-  const { height } = useWindowDimensions();
-  const imgixParams = { h: height };
+  const { width, height } = useWindowDimensions();
+  const imgixParams = { fit: "crop", h: height, w: width };
   const uri = {
     uri: imgix.buildURL("amsterdam.jpg", imgixParams),
   };
