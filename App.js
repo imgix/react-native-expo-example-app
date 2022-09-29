@@ -19,7 +19,11 @@ export default function App() {
         </Text>{" "}
         to {"<Image />"} in App.js.
       </Text>
-      <Image source={{ uri: imgixImageURL }} />
+      <Image
+        style={styles.image}
+        height={950}
+        source={{ uri: imgixImageURL }}
+      />
     </View>
   );
 }
@@ -41,5 +45,8 @@ const styles = StyleSheet.create({
   link: {
     color: "blue",
     fontWeight: "bold",
+  },
+  image: {
+    flex: 1,
   },
 });
