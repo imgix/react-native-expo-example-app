@@ -2,7 +2,7 @@ import ImgixClient from "@imgix/js-core";
 import Constants from "expo-constants";
 import * as React from "react";
 import {
-  Image,
+  Animated,
   Linking,
   PixelRatio,
   StyleSheet,
@@ -40,6 +40,24 @@ export default function App() {
   };
   const lqipUri = { uri: imgix.buildURL("amsterdam.jpg", lqipParams) };
 
+  // animate the opacity of the lqip and full quality image
+  const lqipOpacity = React.useRef(new Animated.Value(0.01)).current;
+  const imageOpacity = React.useRef(new Animated.Value(0.01)).current;
+
+  // when image loads, set their opacity to 1
+  const handleLqipLoad = () => {
+    Animated.timing(lqipOpacity, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+  const handleImageLoad = () => {
+    Animated.timing(imageOpacity, {
+      toValue: 1,
+      useNativeDriver: true,
+    }).start();
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>
@@ -55,8 +73,16 @@ export default function App() {
         to {"<Image />"} in App.js.
       </Text>
       <View style={styles.imageContainer}>
-        <Image source={lqipUri} style={[styles.image]} />
-        <Image source={uri} style={[styles.image]} />
+        <Animated.Image
+          style={[styles.image, { opacity: lqipOpacity }]}
+          onLoad={handleLqipLoad}
+          source={lqipUri}
+        />
+        <Animated.Image
+          onLoad={handleImageLoad}
+          source={uri}
+          style={[styles.image, { opacity: imageOpacity }]}
+        />
       </View>
     </View>
   );
