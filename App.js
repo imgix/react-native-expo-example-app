@@ -14,6 +14,10 @@ import {
 export default function App() {
   const imgix = new ImgixClient({ domain: "sdk-test.imgix.net" });
   const { width, height } = useWindowDimensions();
+  /**
+   * create a "full resolution image" that matches the device dimensions and
+   * device-pixel-ratio.
+   */
   const imgixParams = {
     fit: "crop",
     h: height,
@@ -23,6 +27,18 @@ export default function App() {
   const uri = {
     uri: imgix.buildURL("amsterdam.jpg", imgixParams),
   };
+
+  /**
+   * create a low quality image placeholder with imgix rendering API
+   */
+  const lqipParams = {
+    fit: "crop",
+    w: width / 4,
+    h: height / 4,
+    dpr: 1,
+    blur: 25,
+  };
+  const lqipUri = { uri: imgix.buildURL("amsterdam.jpg", lqipParams) };
 
   return (
     <View style={styles.container}>
@@ -38,7 +54,10 @@ export default function App() {
         </Text>{" "}
         to {"<Image />"} in App.js.
       </Text>
-      <Image style={styles.image} height={height} source={uri} />
+      <View style={styles.imageContainer}>
+        <Image source={lqipUri} style={[styles.image]} />
+        <Image source={uri} style={[styles.image]} />
+      </View>
     </View>
   );
 }
@@ -61,8 +80,15 @@ const styles = StyleSheet.create({
     color: "blue",
     fontWeight: "bold",
   },
-  image: {
+  imageContainer: {
     flex: 1,
+  },
+  image: {
+    position: "absolute",
     backgroundColor: "#e1e4e8",
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
   },
 });
