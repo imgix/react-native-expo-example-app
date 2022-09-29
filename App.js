@@ -4,6 +4,7 @@ import * as React from "react";
 import {
   Image,
   Linking,
+  PixelRatio,
   StyleSheet,
   Text,
   useWindowDimensions,
@@ -13,7 +14,12 @@ import {
 export default function App() {
   const imgix = new ImgixClient({ domain: "sdk-test.imgix.net" });
   const { width, height } = useWindowDimensions();
-  const imgixParams = { fit: "crop", h: height, w: width };
+  const imgixParams = {
+    fit: "crop",
+    h: height,
+    w: width,
+    dpr: PixelRatio.get(),
+  };
   const uri = {
     uri: imgix.buildURL("amsterdam.jpg", imgixParams),
   };
