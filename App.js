@@ -1,11 +1,18 @@
 import ImgixClient from "@imgix/js-core";
 import Constants from "expo-constants";
 import * as React from "react";
-import { Image, Linking, StyleSheet, Text, View } from "react-native";
+import {
+  Image,
+  Linking,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+} from "react-native";
 
 export default function App() {
   const imgix = new ImgixClient({ domain: "sdk-test.imgix.net" });
-  const height = 950;
+  const { height } = useWindowDimensions();
   const imgixParams = { h: height };
   const uri = {
     uri: imgix.buildURL("amsterdam.jpg", imgixParams),
