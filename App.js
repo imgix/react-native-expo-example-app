@@ -1,8 +1,10 @@
 import Constants from "expo-constants";
 import * as React from "react";
-import { Linking, StyleSheet, Text, View } from "react-native";
+import { Image, Linking, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
+  const imgixImageURL = "https://sdk-test.imgix.net/amsterdam.jpg";
+
   return (
     <View style={styles.container}>
       <Text style={styles.paragraph}>
@@ -17,6 +19,7 @@ export default function App() {
         </Text>{" "}
         to {"<Image />"} in App.js.
       </Text>
+      <Image source={{ uri: imgixImageURL }} />
     </View>
   );
 }
