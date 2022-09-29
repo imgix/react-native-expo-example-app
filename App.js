@@ -1,9 +1,24 @@
 import Constants from "expo-constants";
 import * as React from "react";
-import { StyleSheet, View } from "react-native";
+import { Linking, StyleSheet, Text, View } from "react-native";
 
 export default function App() {
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      <Text style={styles.paragraph}>
+        To get started, add a URL with imgix{" "}
+        <Text
+          style={styles.link}
+          onPress={() =>
+            Linking.openURL("https://docs.imgix.com/apis/rendering")
+          }
+        >
+          parameters
+        </Text>{" "}
+        to {"<Image />"} in App.js.
+      </Text>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
