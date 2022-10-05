@@ -4,7 +4,7 @@
 
 Browse the commit history of this repository. It will help you get started integrating imgix with React Native's `<Image />` component.
 
-If you just want to see the final result, open our app on [Expo Snack](https://snack.expo.dev/@lball/responsive-image). There you can see it running live on the web, iOS, or Android.
+If you just want to see the final result, open our app on [Expo Snack](https://snack.expo.dev/@imgix-developers/imgix---react-native). There you can see it running live on the web, iOS, or Android.
 
 ## Local Development
 
